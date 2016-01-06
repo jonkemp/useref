@@ -58,7 +58,7 @@ An example of this in completed form can be seen below:
   <script type="text/javascript" src="scripts/four.js"></script>
   <!-- endbuild -->
 
-  <!-- build:js scripts/file.js(/scripts/alternate.js) -->
+  <!-- build:js scripts/file.js(scripts/alternate.js) -->
   <script type="text/javascript" src="scripts/five.js"></script>
   <!-- endbuild -->
 </body>
