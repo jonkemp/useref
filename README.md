@@ -1,4 +1,5 @@
-# useref [![Build Status](https://travis-ci.org/jonkemp/useref.svg?branch=master)](https://travis-ci.org/jonkemp/useref) [![Coverage Status](https://coveralls.io/repos/jonkemp/useref/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/useref?branch=master)
+useref [![Build Status](https://travis-ci.org/jonkemp/useref.svg?branch=master)](https://travis-ci.org/jonkemp/useref) [![Coverage Status](https://coveralls.io/repos/jonkemp/useref/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/useref?branch=master)
+=======================================================================================================================================================================================================================================================================================
 
 [![NPM](https://nodei.co/npm/useref.png?downloads=true)](https://nodei.co/npm/useref/)
 
@@ -6,13 +7,15 @@
 
 Extracted from the grunt plugin [grunt-useref](https://github.com/pajtai/grunt-useref).
 
-## Installation
+Installation
+------------
 
 ```
 npm install useref
 ```
 
-## Usage
+Usage
+-----
 
 ```js
 var useref = require('useref');
@@ -20,19 +23,19 @@ var result = useref(inputHtml);
 // result = [ replacedHtml, { type: { path: { 'assets': [ replacedFiles] }}} ]
 ```
 
-
 Blocks are expressed as:
 
 ```html
-<!-- build:<type>(alternate search path) <path> <parameters> -->
+<!-- build:<type>(alternate search path) <path>(alternate source path) <parameters> -->
 ... HTML Markup, list of script / link tags.
 <!-- endbuild -->
 ```
 
-- **type**: either `js`, `css` or `remove`
-- **alternate search path**: (optional) By default the input files are relative to the treated file. Alternate search path allows one to change that
-- **path**: the file path of the optimized file, the target output
-- **parameters**: extra parameters that should be added to the tag
+-	**type**: either `js`, `css` or `remove`
+-	**alternate search path**: (optional) By default the input files are relative to the treated file. Alternate search path allows one to change that
+-	**path**: the file path of the optimized file, the target output
+-	**alternate source path**: (optional) By default the src/href attribute of generated link/script tags points to *path*. Alternate source paths allows one to change that
+-	**parameters**: extra parameters that should be added to the tag
 
 An example of this in completed form can be seen below:
 
@@ -53,6 +56,10 @@ An example of this in completed form can be seen below:
   <!-- build:js scripts/async.js async data-foo="bar" -->
   <script type="text/javascript" src="scripts/three.js"></script>
   <script type="text/javascript" src="scripts/four.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js scripts/file.js(scripts/alternate.js) -->
+  <script type="text/javascript" src="scripts/five.js"></script>
   <!-- endbuild -->
 </body>
 </html>
@@ -77,12 +84,14 @@ var result = useref(sampleHtml);
 //       },
 //       'scripts/async.js': {
 //          'assets': [ 'scripts/three.js', 'scripts/four.js' ]
+//        },
+//       'scripts/file.js': {
+//          'assets': [ 'scripts/five.js']
 //        }
 //     }
 //   }
 // ]
 ```
-
 
 The resulting HTML would be:
 
@@ -94,11 +103,13 @@ The resulting HTML would be:
 <body>
   <script src="scripts/combined.js"></script>
   <script src="scripts/async.js" async data-foo="bar" ></script>
+  <script src="scripts/alternate.js"></script>
 </body>
 </html>
 ```
 
-## IE Conditional Comments
+IE Conditional Comments
+-----------------------
 
 Internet Explorer Conditional Comments are preserved. The code below:
 
@@ -150,10 +161,10 @@ Becomes
 
 The handler function gets the following arguments:
 
-- *content* (String): The content of the custom use block
-- *target* (String): The "path" value of the use block definition
-- *options* (String): The extra attributes from the use block definition, the developer can parse as JSON or do whatever they want with it
-- *alternateSearchPath* (String): The alternate search path that can be used to maintain a coherent interface with standard handlers
+-	*content* (String): The content of the custom use block
+-	*target* (String): The "path" value of the use block definition
+-	*options* (String): The extra attributes from the use block definition, the developer can parse as JSON or do whatever they want with it
+-	*alternateSearchPath* (String): The alternate search path that can be used to maintain a coherent interface with standard handlers
 
 Include a handler for each custom block type.
 
@@ -162,7 +173,7 @@ Include a handler for each custom block type.
 #### options.noconcat
 
 Type: `Boolean`  
-Default: `false`  
+Default: `false`
 
 Strips out build comments but leaves the rest of the block intact without replacing any tags.
 
@@ -180,10 +191,12 @@ Results in:
 <script type="text/javascript" src="scripts/that.js"></script>
 ```
 
-## Contributing
+Contributing
+------------
 
 See the [CONTRIBUTING Guidelines](https://github.com/jonkemp/useref/blob/master/CONTRIBUTING.md)
 
-## License
+License
+-------
 
 MIT © [Jonathan Kemp](http://jonkemp.com)

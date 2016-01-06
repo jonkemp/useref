@@ -242,4 +242,14 @@ describe('html-ref-replace', function() {
       }
     });
   });
+
+  it('should allow alternate source paths in css blocks', function() {
+    var result = useRef(fread(djoin('testfiles/27.html')));
+    expect(result[0]).to.equal(fread(djoin('testfiles/27-expected.html')));
+  });
+
+  it('should allow alternate source paths in js blocks', function() {
+    var result = useRef(fread(djoin('testfiles/28.html')));
+    expect(result[0]).to.equal(fread(djoin('testfiles/28-expected.html')));
+  });
 });

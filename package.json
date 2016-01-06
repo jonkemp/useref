@@ -1,6 +1,6 @@
 {
   "name": "useref",
-  "version": "1.1.2",
+  "version": "1.2.2",
   "description": "Parse build blocks in HTML files to replace references",
   "main": "index.js",
   "directories": {
@@ -29,6 +29,12 @@
     "ref"
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
+  "contributors": [
+    {
+      "name": "Hans-Peter Dietz",
+      "email": "h.p.dietz@gmail.com"
+    }
+  ]
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.1",
