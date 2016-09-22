@@ -248,4 +248,17 @@ describe('html-ref-replace', function() {
       }
     });
   });
+  
+
+  it('should replace reference in css block and return replaced files', function() {
+    var result = useRef(fread(djoin('testfiles/28-strictCssXML.html')), { strictCssXML: true });
+    expect(result[0]).to.equal(fread(djoin('testfiles/28-strictCssXML-expected.html')));
+    expect(result[1]).to.eql({ css: { '/css/combined.css': { 'assets': [ '/css/one.css', '/css/two.css' ] }}});
+  });
+
+  it('should replace reference in js block and return replaced files', function() {
+    var result = useRef(fread(djoin('testfiles/29-strictScriptXML.html')), { strictScriptXML: true });
+    expect(result[0]).to.equal(fread(djoin('testfiles/29-strictScriptXML-expected.html')));
+    expect(result[1]).to.eql({ js: { 'scripts/combined.concat.min.js': { 'assets': [ 'scripts/this.js', 'scripts/that.js' ] }}});
+  });
 });
