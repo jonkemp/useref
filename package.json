@@ -31,13 +31,14 @@
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.6",
+    "coveralls": "^3.0.9",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-mocha": "^7.0.2",
     "mocha": "*",
-    "nyc": "^14.1.1"
+    "nyc": "^15.0.0"
   },
   "repository": "jonkemp/useref"
 }
